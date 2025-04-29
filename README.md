@@ -24,40 +24,40 @@ end
 end)
 end)
 
-
+-- สร้างปุ่ม Toggle ใหม่ที่ไม่เกี่ยวกับ GUI เดิม
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "CustomToggleGui"
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-
+-- สร้างปุ่ม Toggle
 local ToggleButton = Instance.new("TextButton")
 ToggleButton.Size = UDim2.new(0, 150, 0, 50)
 ToggleButton.Position = UDim2.new(0, 20, 0, 200)
-ToggleButton.Text = "Toggle UI: OFF"  
+ToggleButton.Text = "Toggle UI: OFF"  -- ตั้งข้อความเริ่มต้นเป็น OFF
 ToggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleButton.Font = Enum.Font.SourceSans
 ToggleButton.TextSize = 20
 ToggleButton.Parent = ScreenGui
 
-
+-- ตัวแปรสถานะ
 local isToggled = false
 
-
+-- เมื่อคลิกปุ่มนี้ จะทำงานเหมือนการกด RightControl
 ToggleButton.MouseButton1Click:Connect(function()
- 
+    -- เปลี่ยนสถานะ Toggle
     isToggled = not isToggled
 
     if isToggled then
-        ToggleButton.Text = "OFF"  
-        ToggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50) 
+        ToggleButton.Text = "OFF"  -- เปลี่ยนข้อความเป็น ON
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- เปลี่ยนสีปุ่มเป็นเขียว
     else
-        ToggleButton.Text = "ON"  -- เ
-        ToggleButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)  -
+        ToggleButton.Text = "ON"  -- เปลี่ยนข้อความเป็น OFF
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)  -- เปลี่ยนสีปุ่มเป็นเทา
     end
 
-    
+    -- เรียกใช้ฟังก์ชันที่ผูกกับ RightControl (แสดง/ซ่อน UI)
     pcall(function()
         Library:ToggleUI()
     end)
